@@ -19,9 +19,21 @@ const connect = function () {
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
-  conn.on("connect", (data) => {
-    console.log(data);
+  conn.on("connect", () => {
+    console.log("You're connected!");
     // code that does something when the connection is first established
+  });
+
+  conn.on("data", (data) => {
+    console.log(data);
+  });
+
+  conn.on("end", () => {
+    console.log("Ended!");
+  });
+
+  conn.on("close", () => {
+    console.log("Closed");
   });
 
   return conn;
