@@ -1,19 +1,19 @@
 const net = require("net");
-const PORT = '50541';
-const HOST = '192.168.0.14';
+
+const config = {
+  port: '50541',
+  host: '192.168.0.14'
+}
 
 // establishes a connection with the game server
 const connect = function () {
-  const conn = net.createConnection({
-    host: HOST,// IP address here,
-    port: PORT, // PORT number here,
-  });
+  const conn = net.createConnection(config);
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
   conn.on("connect", () => {
-    console.log("You're connected!");
+    console.log("You've successfully connected to the game server!");
     // code that does something when the connection is first established
   });
 
@@ -25,8 +25,8 @@ const connect = function () {
     console.log("Ended!");
   });
 
-  conn.on("close", () => {
-    console.log("Closed");
+  process.stdin.on('data', (userInput) => {
+    conn.write(userInput);
   });
 
   return conn;
