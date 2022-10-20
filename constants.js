@@ -10,8 +10,7 @@ const commands = {
   up: "Move: up",
   left: "Move: left",
   down: "Move: down",
-  right: "Move: right",
-  quit: "\003"
+  right: "Move: right"
 };
 
 const messages = {
@@ -31,7 +30,8 @@ const keys = {
   right: "d",
   msg1: "m",
   msg2: "n",
-  msg3: "b"
+  msg3: "b",
+  exit: "\003"
 };
 
 module.exports = {

@@ -15,6 +15,16 @@ const setupInput = function() {
 // Player will also need keys to send messages to players and quit the game
 const handleUserInput = (data) => {
   // Move up, left, down, right if the user types a key defined in contants.js
+  handleDirection(data);
+  
+  // Close the program if user input CTRL+C
+  handleExit(data);
+
+  // Send some predefined messages to other players using keyboard shortcuts
+  handleMessages(data);
+};
+
+const handleDirection = (data) => {
   if (data === keys.up) {
     conn.write(commands.up);
   } else if (data === keys.left) {
@@ -24,13 +34,9 @@ const handleUserInput = (data) => {
   } else if (data === keys.right) {
     conn.write(commands.right);
   }
-  
-  // Close the program if user input CTRL+C
-  if (data === commands.quit) {
-    process.exit();
-  }
+};
 
-  // Send some predefined messages to other players using keyboard shortcuts
+const handleMessages = (data) => {
   if (data === keys.msg1) {
     conn.write(messages.greeting);
   } else if (data === keys.msg2) {
@@ -38,9 +44,12 @@ const handleUserInput = (data) => {
   } else if (data === keys.msg3) {
     conn.write(messages.bye);
   }
+};
 
-  // Log user input to the console.
-  console.log(data);
+const handleExit = (data) => {
+  if (data === keys.exit) {
+    process.exit();
+  }
 };
 
 module.exports = {
