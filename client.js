@@ -5,9 +5,10 @@ const config = {
   host: '192.168.0.14'
 }
 
+const conn = net.createConnection(config);
+
 // establishes a connection with the game server
 const connect = function () {
-  const conn = net.createConnection(config);
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
@@ -57,5 +58,6 @@ const connect = function () {
 };
 
 module.exports = {
-  connect
+  connect,
+  conn
 }
