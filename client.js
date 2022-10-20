@@ -17,7 +17,7 @@ const connect = function () {
     console.log("You've successfully connected to the game server!");
     // code that does something when the connection is first established
 
-    // conn.write("Name: KAG");
+    conn.write("Name: KAG");
 
     // for (i = 1000; i < 7000; i += 1000) {
     //   setTimeout(() => {
