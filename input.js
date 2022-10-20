@@ -1,7 +1,6 @@
-const { Console } = require("console");
 const { conn } = require("./client");
 
-const setupInput = function () {
+const setupInput = function() {
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -29,8 +28,8 @@ const handleUserInput = (data) => {
   } else if (data === 'b') {
     conn.write("Say: Bye!");
   }
-}
+};
 
 module.exports = {
   setupInput
-}
+};
