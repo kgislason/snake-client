@@ -1,5 +1,7 @@
+const { messages, commands, keys } = require("./constants");
 const { conn } = require("./client");
 
+// Allow keyboard input to be interpreted
 const setupInput = function() {
   const stdin = process.stdin;
   stdin.setRawMode(true);
@@ -9,24 +11,28 @@ const setupInput = function() {
   return stdin;
 };
 
+// Player will use keys on keyboard to move the snack around the board
+// Player will also need keys to send messages to players and quit the game
 const handleUserInput = (data) => {
   // Close the program if user input CTRL+C
-  if (data === 'w') {
-    conn.write("Move: up");
-  } else if (data === 'a') {
-    conn.write("Move: left");
-  } else if (data === 's') {
-    conn.write("Move: down");
-  } else if (data === 'd') {
-    conn.write("Move: right");
-  } else if (data === '\003') {
+  if (data === keys.up) {
+    conn.write(commands.up);
+  } else if (data === keys.left) {
+    conn.write(commands.left);
+  } else if (data === keys.down) {
+    conn.write(commands.down);
+  } else if (data === keys.right) {
+    conn.write(commands.right);
+  } else if (data === commands.down) {
     process.exit();
-  } else if (data === 'm') {
-    conn.write("Say: Hey!");
-  } else if (data === 'n') {
-    conn.write("Say: No you didn't!");
-  } else if (data === 'b') {
-    conn.write("Say: Bye!");
+  } else if (data === keys.msg1) {
+    conn.write(messages.greeting);
+  } else if (data === keys.msg2) {
+    conn.write(messages.silly);
+  } else if (data === keys.msg3) {
+    conn.write(messages.bye);
+  } else {
+    console.log(data);
   }
 };
 

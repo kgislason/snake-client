@@ -1,11 +1,11 @@
 const net = require("net");
+const { PORT, IP, playerInitials, messages } = require("./constants");
 
-const config = {
-  port: '50541',
-  host: '192.168.0.14'
-};
-
-const conn = net.createConnection(config);
+// Create a new connection
+const conn = net.createConnection({
+  port: PORT,
+  host: IP
+});
 
 // establishes a connection with the game server
 const connect = function() {
@@ -13,41 +13,28 @@ const connect = function() {
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
+  // Initiate our connection with the server
   conn.on("connect", () => {
-    console.log("You've successfully connected to the game server!");
+    console.log(messages.connectMsg);
     // code that does something when the connection is first established
 
-    conn.write("Name: KAG");
-
-    // for (i = 1000; i < 7000; i += 1000) {
-    //   setTimeout(() => {
-    //     conn.write("Move: up");
-    //   }, i);
-    // }
-
-    // for (i = 7000; i < 20000; i += 1000) {
-    //   setTimeout(() => {
-    //     conn.write("Move: left");
-    //   }, i);
-    // }
-
-    // setTimeout(() => {
-    //   conn.write("Move: down");
-    // }, 20000);
-
-    // for (i = 21000; i < 31000; i += 1000) {
-    //   setTimeout(() => {
-    //     conn.write("Move: right");
-    //   }, i);
-    // }
+    conn.write(playerInitials);
   });
 
-  conn.on("data", (data) => {
-    console.log(data);
+  conn.on('error', () => {
+    console.log(messages.errMsg);
   });
 
+  // Listen for data
+  conn.on("data", (userInput) => {
+    // remove outside space
+    userInput = userInput.trim();
+    console.log(userInput);
+  });
+
+  // Log a message to the console when the player disconnects from the game
   conn.on("end", () => {
-    console.log("Ended!");
+    console.log(messages.endMsg);
   });
 
   process.stdin.on('data', (userInput) => {
