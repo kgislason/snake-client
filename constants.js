@@ -18,8 +18,8 @@ const messages = {
   endMsg: "GAME OVER!",
   errMsg: "Connection error.",
   greeting: "Say: Hey!",
-  silly: "No you didn't!",
-  bye: "Bye, bye"
+  silly: "Say: No you didn't!",
+  bye: "Say: Bye, bye"
 };
 
 // Keyboard keys for each movement in the game

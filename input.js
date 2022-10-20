@@ -23,7 +23,7 @@ const handleUserInput = (data) => {
     conn.write(commands.down);
   } else if (data === keys.right) {
     conn.write(commands.right);
-  } else if (data === commands.down) {
+  } else if (data === commands.quit) {
     process.exit();
   } else if (data === keys.msg1) {
     conn.write(messages.greeting);
