@@ -23,12 +23,12 @@ const handleUserInput = (data) => {
     conn.write(commands.down);
   } else if (data === keys.right) {
     conn.write(commands.right);
-  } 
+  }
   
   // Close the program if user input CTRL+C
   if (data === commands.quit) {
     process.exit();
-  } 
+  }
 
   // Send some predefined messages to other players using keyboard shortcuts
   if (data === keys.msg1) {
