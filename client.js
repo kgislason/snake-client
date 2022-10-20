@@ -1,34 +1,38 @@
 const net = require("net");
 const { PORT, IP, playerInitials, messages } = require("./constants");
 
-// Create a new connection
+// establishes a connection with the game server
 const conn = net.createConnection({
   port: PORT,
   host: IP
 });
 
-// establishes a connection with the game server
+// collect events into a function
 const connect = function() {
 
-  // interpret incoming data as text
+  // set the encoding
   conn.setEncoding("utf8");
 
-  // Initiate our connection with the server
+  // Log a message to the console once connection has been established
   conn.on("connect", () => {
     console.log(messages.connectMsg);
-    // code that does something when the connection is first established
 
+    // Set up our initials on the game board using keyword 'Name: ABC'
     conn.write(playerInitials);
   });
 
+  // Log an error message on error
   conn.on('error', () => {
     console.log(messages.errMsg);
   });
 
   // Listen for data
   conn.on("data", (userInput) => {
+
     // remove outside space
     userInput = userInput.trim();
+
+    // Log data input from user to the console
     console.log(userInput);
   });
 
@@ -37,11 +41,10 @@ const connect = function() {
     console.log(messages.endMsg);
   });
 
+  // Send user input to the server to communicate with other game players
   process.stdin.on('data', (userInput) => {
     conn.write(userInput);
   });
-
-  return conn;
 };
 
 module.exports = {

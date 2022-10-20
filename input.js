@@ -14,7 +14,7 @@ const setupInput = function() {
 // Player will use keys on keyboard to move the snack around the board
 // Player will also need keys to send messages to players and quit the game
 const handleUserInput = (data) => {
-  // Close the program if user input CTRL+C
+  // Move up, left, down, right if the user types a key defined in contants.js
   if (data === keys.up) {
     conn.write(commands.up);
   } else if (data === keys.left) {
@@ -23,17 +23,24 @@ const handleUserInput = (data) => {
     conn.write(commands.down);
   } else if (data === keys.right) {
     conn.write(commands.right);
-  } else if (data === commands.quit) {
+  } 
+  
+  // Close the program if user input CTRL+C
+  if (data === commands.quit) {
     process.exit();
-  } else if (data === keys.msg1) {
+  } 
+
+  // Send some predefined messages to other players using keyboard shortcuts
+  if (data === keys.msg1) {
     conn.write(messages.greeting);
   } else if (data === keys.msg2) {
     conn.write(messages.silly);
   } else if (data === keys.msg3) {
     conn.write(messages.bye);
-  } else {
-    console.log(data);
   }
+
+  // Log user input to the console.
+  console.log(data);
 };
 
 module.exports = {
