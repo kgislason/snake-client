@@ -1,9 +1,17 @@
 const PORT = '50541';
 const IP = '192.168.0.14';
 
+// Player initials entered as commandline argument when joining the game
+let initials = process.argv[2];
+
+// If empty, set as guest
+if (!initials) {
+  initials = "Ano";
+}
+
 // Player Name
 // To Do: get this input from the player before connecting
-const playerInitials = "Name: KAG";
+const playerInitials = `Name: ${initials}`;
 
 // Commands
 const commands = {
