@@ -6,11 +6,15 @@ The goal is to grow the snake to become as long as possible without bumping into
 
 This version of the game is multiplayer.
 
+## Screenshot
+
+!["A screenshot of the game board"](./screenshot.png)
+
 ## Commands
 
 First you will need to connect to the server in one terminal. Then connect your client in a separate terminal by running: `node play.js`
 
-`node play.js`: start the game
+`node play.js <initals>`: start the game. Include player initals as argument, I.e. KAG
 
 `w`: Move the snake up
 
