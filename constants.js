@@ -17,7 +17,7 @@ const messages = {
   connectMsg: "You've successfully connected to the game server!",
   endMsg: "GAME OVER!",
   errMsg: "Connection error.",
-  greeting: "Say: Hey!",
+  greeting: "Say: Hi Friends!!",
   silly: "Say: No you didn't!",
   bye: "Say: Bye, bye"
 };
@@ -31,7 +31,8 @@ const keys = {
   msg1: "m",
   msg2: "n",
   msg3: "b",
-  exit: "\003"
+  quit: "q",
+  exit: "\u0003"
 };
 
 module.exports = {

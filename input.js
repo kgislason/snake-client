@@ -49,6 +49,8 @@ const handleMessages = (data) => {
 const handleExit = (data) => {
   if (data === keys.exit) {
     process.exit();
+  } else if (data === keys.quit) {
+    conn.end();
   }
 };
 
