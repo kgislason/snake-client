@@ -22,8 +22,10 @@ First you will need to connect to the server in one terminal. Then connect your 
 
 `m`: Greeting to players
 
-`n`: Silliy message to players
+`n`: Silly message to players
 
 `b`: Bye message to players
+
+`q`: Quit Game
 
 `CTRL+C`: Quit the game
