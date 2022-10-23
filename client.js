@@ -17,6 +17,9 @@ const connect = function() {
   conn.on("connect", () => {
     console.log(messages.connectMsg);
 
+    // Sound bell when joining the game
+    process.stdout.write('\x07');
+
     // Set up our initials on the game board using keyword 'Name: ABC'
     conn.write(playerInitials);
   });
