@@ -11,9 +11,10 @@ const setupInput = function() {
   return stdin;
 };
 
-// Player will use keys on keyboard to move the snack around the board
-// Player will also need keys to send messages to players and quit the game
+// Player will use keys on keyboard to move the snake around the board
+// Player will also need keys to send messages to players and quit/exit the game
 const handleUserInput = (data) => {
+  // Handle all user input: Directions, Messages, Quit/Exit Game
   // Move up, left, down, right if the user types a key defined in contants.js
   handleDirection(data);
   
@@ -25,6 +26,7 @@ const handleUserInput = (data) => {
 };
 
 const handleDirection = (data) => {
+  // Handle snake movements on the board
   if (data === keys.up) {
     conn.write(commands.up);
   } else if (data === keys.left) {
@@ -37,6 +39,7 @@ const handleDirection = (data) => {
 };
 
 const handleMessages = (data) => {
+  // Send a few messages that are assigned to keys
   if (data === keys.msg1) {
     conn.write(messages.greeting);
   } else if (data === keys.msg2) {
@@ -48,9 +51,19 @@ const handleMessages = (data) => {
 
 const handleExit = (data) => {
   if (data === keys.exit) {
-    process.exit();
-  } else if (data === keys.quit) {
+    // End the connection for the client
     conn.end();
+    setTimeout(() => {
+      // Delay: Exit the game
+      process.exit();
+    }, 100);
+  } else if (data === keys.quit) {
+    // broadcast bye message before quitting the game
+    conn.write(messages.bye);
+    setTimeout(() => {
+      // end the game for the client
+      conn.end();
+    }, 1000);
   }
 };
 
